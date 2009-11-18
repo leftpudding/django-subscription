@@ -307,14 +307,14 @@ def handle_subscription_signup(sender, **kwargs):
             if old_us==us: continue     # don't touch current subscription
             if old_us.cancelled:
                 old_us.delete()
-                Transaction(user=u, subscription=s, ipn=sender,
+                Transaction(user=u, subscription=old_us.subscription, ipn=sender,
                             event='remove subscription (deactivated)', amount=sender.mc_gross
                             ).save()
             else:
                 old_us.active = False
                 old_us.unsubscribe()
                 old_us.save()
-                Transaction(user=u, subscription=s, ipn=sender,
+                Transaction(user=u, subscription=old_us.subscription, ipn=sender,
                             event='deactivated', amount=sender.mc_gross
                             ).save()
 

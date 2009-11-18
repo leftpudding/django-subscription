@@ -47,10 +47,10 @@ class Subscription(models.Model):
     group = models.OneToOneField(auth.models.Group)
 
     _PLURAL_UNITS = {
-        'D': 'days',
-        'W': 'weeks',
-        'M': 'months',
-        'Y': 'years',
+        'D': ugettext_lazy('Days'),
+        'W': ugettext_lazy('Weeks'),
+        'M': ugettext_lazy('Months'),
+        'Y': ugettext_lazy('Years'),
         }
    _SINGLE_UNITS = {
         'D': 'Day',

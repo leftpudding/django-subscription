@@ -92,7 +92,7 @@ class Subscription(models.Model):
 class ActiveUSManager(models.Manager):
     """Custom Manager for UserSubscription that returns only live US objects."""
     def get_query_set(self):
-        return super(USManager, self).get_query_set().filter(active=True)
+        return super(ActiveUSManager, self).get_query_set().filter(active=True)
 
 class UserSubscription(models.Model):
     user = models.ForeignKey(auth.models.User)

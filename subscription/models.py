@@ -52,7 +52,12 @@ class Subscription(models.Model):
         'M': 'months',
         'Y': 'years',
         }
-
+   _SINGLE_UNITS = {
+        'D': 'Day',
+        'W': 'Week',
+        'M': 'Month',
+        'Y': 'Year',
+        }	
     class Meta:
         ordering = ('price','-recurrence_period')
 
@@ -89,6 +94,8 @@ class Subscription(models.Model):
                 }
         else: return _('%(price).02f one-time fee') % { 'price':self.price }
 
+    def get_recurrence_unit_display(self):
+        return _(self._SINGLE_UNITS[self.recurrence_unit],)
 class ActiveUSManager(models.Manager):
     """Custom Manager for UserSubscription that returns only live US objects."""
     def get_query_set(self):
